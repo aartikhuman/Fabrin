@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fabrin - Premium Fashion eCommerce React Template Documentation</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Playfair+Display:wght@700&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --primary: #9B7E6A;
+            --primary-light: #F4F0EE;
+            --black: #1A1A1A;
+            --gray: #F5F5F7;
+            --text: #4A4A4A;
+            --sidebar-width: 280px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Outfit', sans-serif;
+            line-height: 1.7;
+            color: var(--text);
+            margin: 0;
+            background: white;
+            display: flex;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            width: var(--sidebar-width);
+            height: 100vh;
+            background: var(--black);
+            color: white;
+            position: fixed;
+            padding: 40px 30px;
+            overflow-y: auto;
+            border-right: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .sidebar h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 32px;
+            margin: 0 0 40px 0;
+            letter-spacing: -1px;
+        }
+
+        .sidebar nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .sidebar nav li {
+            margin-bottom: 20px;
+        }
+
+        .sidebar nav a {
+            color: #999;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: 0.3s;
+        }
+
+        .sidebar nav a:hover,
+        .sidebar nav a.active {
+            color: var(--primary);
+        }
+
+        /* Content */
+        .main-content {
+            margin-left: var(--sidebar-width);
+            padding: 80px 10%;
+            width: calc(100% - var(--sidebar-width));
+            max-width: 1200px;
+        }
+
+        section {
+            padding-bottom: 80px;
+            margin-bottom: 80px;
+            border-bottom: 1px solid var(--gray);
+        }
+
+        section:last-child {
+            border-bottom: none;
+        }
+
+        h1,
+        h2,
+        h3 {
+            font-family: 'Playfair Display', serif;
+            color: var(--black);
+        }
+
+        h1 {
+            font-size: 64px;
+            margin: 0 0 20px 0;
+            letter-spacing: -2px;
+        }
+
+        h2 {
+            font-size: 42px;
+            margin: 0 0 30px 0;
+            letter-spacing: -1px;
+        }
+
+        h3 {
+            font-size: 28px;
+            margin: 40px 0 20px 0;
+        }
+
+        .badge {
+            display: inline-block;
+            background: var(--primary-light);
+            color: var(--primary);
+            padding: 6px 16px;
+            border-radius: 30px;
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            margin-bottom: 20px;
+        }
+
+        p {
+            font-size: 17px;
+            margin-bottom: 20px;
+            color: #666;
+        }
+
+        code {
+            background: var(--gray);
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-family: monospace;
+            color: var(--primary);
+            font-size: 15px;
+        }
+
+        pre {
+            background: var(--black);
+            color: #d1d1d1;
+            padding: 30px;
+            border-radius: 12px;
+            font-family: 'Fira Code', monospace;
+            font-size: 14px;
+            line-height: 1.6;
+            overflow-x: auto;
+            margin: 30px 0;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        .structure-list {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .structure-list li {
+            margin-bottom: 10px;
+            padding-left: 20px;
+            position: relative;
+        }
+
+        .structure-list li::before {
+            content: "→";
+            position: absolute;
+            left: 0;
+            color: var(--primary);
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .feature-item {
+            background: var(--gray);
+            padding: 30px;
+            border-radius: 16px;
+        }
+
+        .feature-item h4 {
+            margin: 0 0 10px 0;
+            font-size: 18px;
+            color: var(--black);
+        }
+
+        .feature-item p {
+            margin: 0;
+            font-size: 15px;
+        }
+
+        .custom-note {
+            background: #fff8eb;
+            border-left: 4px solid #ffb020;
+            padding: 20px;
+            margin: 30px 0;
+            border-radius: 0 8px 8px 0;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 30px 0;
+        }
+
+        th,
+        td {
+            text-align: left;
+            padding: 15px;
+            border-bottom: 1px solid var(--gray);
+        }
+
+        th {
+            background: var(--gray);
+            color: var(--black);
+            border-radius: 4px;
+        }
+
+        @media (max-width: 991px) {
+            body {
+                flex-direction: column;
+            }
+
+            .sidebar {
+                width: 100%;
+                height: auto;
+                position: relative;
+                padding: 30px;
+            }
+
+            .main-content {
+                margin-left: 0;
+                width: 100%;
+                padding: 40px 30px;
+            }
+
+            h1 {
+                font-size: 48px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="sidebar">
+        <h2>Fabrin.</h2>
+        <nav>
+            <ul>
+                <li><a href="#introduction">Introduction</a></li>
+                <li><a href="#requirements">Requirements</a></li>
+                <li><a href="#installation">Installation</a></li>
+                <li><a href="#structure">Structure</a></li>
+                <li><a href="#routing">Routing</a></li>
+                <li><a href="#customization">Customization</a></li>
+                <li><a href="#deployment">Deployment</a></li>
+                <li><a href="#credits">Credits</a></li>
+                <li><a href="#support">Support</a></li>
+            </ul>
+        </nav>
+    </div>
+
+    <div class="main-content">
+        <!-- Introduction -->
+        <section id="introduction">
+            <span class="badge">Version 1.0.0</span>
+            <h1>Introduction</h1>
+            <p><strong>Fabrin</strong> is a state-of-the-art React eCommerce template meticulously crafted for luxury
+                boutiques, fashion houses, and premium lifestyle brands. Built with a "Mobile-First" approach, it offers
+                a seamless shopping experience across all devices.</p>
+
+            <div class="feature-grid">
+                <div class="feature-item">
+                    <h4>Ultra Performance</h4>
+                    <p>Optimized with Vite and modern React 18 standards for lightning-fast load times.</p>
+                </div>
+                <div class="feature-item">
+                    <h4>Design System</h4>
+                    <p>Meticulously organized CSS/Tailwind system for easy branding and consistency.</p>
+                </div>
+                <div class="feature-item">
+                    <h4>User Experience</h4>
+                    <p>Smooth Framer Motion animations and intuitive flows optimized for conversion.</p>
+                </div>
+                <div class="feature-item">
+                    <h4>Ready to Scale</h4>
+                    <p>Clean TypeScript architecture makes it easy for developers to extend functionality.</p>
+                </div>
+            </div>
+
+            <h3>Key Features</h3>
+            <ul class="structure-list">
+                <li>Vite + React 18 + TypeScript</li>
+                <li>Framer Motion for high-end animations</li>
+                <li>Multi-step professional checkout flow</li>
+                <li>Dynamic product filtering system</li>
+                <li>Wishlist and Cart state management</li>
+                <li>Unique brand-reveal preloader</li>
+                <li>Retina ready & fully responsive layout</li>
+            </ul>
+        </section>
+
+        <!-- Requirements -->
+        <section id="requirements">
+            <h2>Requirements</h2>
+            <p>Before you begin, ensure you have the following installed on your system:</p>
+            <table>
+                <tr>
+                    <th>Requirement</th>
+                    <th>Recommended Version</th>
+                </tr>
+                <tr>
+                    <td>Node.js</td>
+                    <td>v18.0.0 or higher (Latest LTS recommended)</td>
+                </tr>
+                <tr>
+                    <td>Package Manager</td>
+                    <td>npm v8+ or Yarn v1.22+</td>
+                </tr>
+                <tr>
+                    <td>Browser</td>
+                    <td>Chrome, Edge, Safari, or Firefox (Modern versions)</td>
+                </tr>
+            </table>
+        </section>
+
+        <!-- Installation -->
+        <section id="installation">
+            <h2>Installation Guide</h2>
+            <p>Follow these simple steps to get the environment ready:</p>
+
+            <h3>1. Extract the Files</h3>
+            <p>Extract the <code>fabrin-v1.0.zip</code> package to your desired project directory.</p>
+
+            <h3>2. Install Dependencies</h3>
+            <p>Open your terminal/command prompt and navigate to the project root:</p>
+            <pre>cd fabrin
+npm install</pre>
+
+            <h3>3. Running Development Server</h3>
+            <p>Start the development environment to see changes in real-time:</p>
+            <pre>npm run dev</pre>
+            <p>The application will be available at: <code>http://localhost:5173</code></p>
+
+            <h3>4. Creating Production Build</h3>
+            <p>When you are ready to deploy, generate the optimized production files:</p>
+            <pre>npm run build</pre>
+            <p>This will create a <code>dist/</code> folder containing minimized assets.</p>
+        </section>
+
+        <!-- Structure -->
+        <section id="structure">
+            <h2>Folder Structure</h2>
+            <p>Fabrin follows a clean and logical industry-standard organization:</p>
+            <pre>
+/app
+  /components
+    /layout      - Navigation, Header, Footer
+    /ui          - Global UI elements (Preloader, Toasts)
+    /product     - Cards, Gallery, Product-specific UI
+    /category    - Filtering and Sidebar components
+  /context       - Global state (Auth, Cart, Wishlist)
+  /data          - Product and static content data
+  /routes        - Page views (index, shop, about, etc.)
+  /types         - TypeScript interfaces and types
+  /utils         - Helper functions and animations
+/public
+  /assets        - High-resolution images and icons
+/Documentation   - You are here!
+            </pre>
+        </section>
+
+        <!-- Routing -->
+        <section id="routing">
+            <h2>Routing System</h2>
+            <p>Routing is handled by <strong>React Router</strong>. All routes are centrally defined in
+                <code>app/routes.ts</code>.
+            </p>
+
+            <h3>Dynamic Routing</h3>
+            <p>Individual product pages are handled dynamically using the product ID:</p>
+            <pre>route("product/:id", "routes/product.$id.tsx")</pre>
+
+            <h3>Checkout Flow</h3>
+            <p>The checkout is a structured multi-step flow for better conversion:</p>
+            <ul class="structure-list">
+                <li>Shipping Details → <code>checkout.shipping.tsx</code></li>
+                <li>Payment Method → <code>checkout.payment.tsx</code></li>
+                <li>Final Review → <code>checkout.review.tsx</code></li>
+            </ul>
+        </section>
+
+        <!-- Customization -->
+        <section id="customization">
+            <h2>Customization Guide</h2>
+
+            <h3>Updating the Logo</h3>
+            <p>The main logo text is defined in <code>app/components/layout/Header.tsx</code>. If you wish to use an
+                image logo, replace the text Link with an <code>&lt;img /&gt;</code> tag.</p>
+
+            <h3>Brand Colors & Typography</h3>
+            <p>Global styling is handled via Tailwind CSS. You can modify colors and font families in:</p>
+            <ul class="structure-list">
+                <li><code>tailwind.config.js</code> - Configuration for colors and fonts.</li>
+                <li><code>app/app.css</code> - Custom utility variables.</li>
+            </ul>
+
+            <h3>Managing Product Data</h3>
+            <p>All products are stored in <code>app/data/products.ts</code>. Simply update this file to add, remove, or
+                edit products for the entire site.</p>
+
+            <div class="custom-note">
+                <strong>Pro Tip:</strong> When adding new pages, remember to register the route in
+                <code>app/routes.ts</code> to make it accessible.
+            </div>
+        </section>
+
+        <!-- Deployment -->
+        <section id="deployment">
+            <h2>Build & Deployment</h2>
+            <h3>Production Build</h3>
+            <pre>npm run build</pre>
+
+            <h3>Hosting Recommendations</h3>
+            <p>As a static build, Fabrin can be hosted anywhere. We recommend:</p>
+            <ul class="structure-list">
+                <li><strong>Netlify:</strong> Best for easy Git integration.</li>
+                <li><strong>Shared Hosting:</strong> Simply upload the contents of the <code>dist/</code> folder via
+                    FTP.</li>
+            </ul>
+        </section>
+
+        <!-- Credits -->
+        <section id="credits">
+            <h2>Credits & Resources</h2>
+            <ul class="structure-list">
+                <li><strong>Fonts:</strong> Google Fonts - Outfit & Playfair Display</li>
+                <li><strong>Icons:</strong> React Icons (Ion-icons, Font Awesome 6)</li>
+                <li><strong>Animations:</strong> Framer Motion 12+</li>
+                <li><strong>Slider:</strong> Swiper.js</li>
+                <li><strong>Images:</strong> Placeholder images used for demonstration purpose. No copyrighted assets
+                    included.</li>
+            </ul>
+        </section>
+
+        <!-- Support -->
+        <section id="support">
+            <h2>Support</h2>
+            <p>Thank you for choosing Fabrin! If you have any questions or need assistance with the template, our team
+                is happy to help.</p>
+            <p><strong>Support Email:</strong> support@example.com</p>
+
+            <div class="custom-note">
+                <strong>Please Note:</strong> Support covers template bugs and installation issues. Custom feature
+                development or 3rd party integration services are not included.
+            </div>
+        </section>
+    </div>
+
+    <script>
+        // Smooth scroll spy effect
+        window.addEventListener('scroll', () => {
+            const sections = document.querySelectorAll('section');
+            const navLinks = document.querySelectorAll('.sidebar nav a');
+
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                if (pageYOffset >= sectionTop - 100) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href').includes(current)) {
+                    link.classList.add('active');
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>
