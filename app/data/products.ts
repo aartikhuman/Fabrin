@@ -753,7 +753,7 @@ export const jewelryProducts: Product[] = [
         price: 22.00,
         rating: 4.5,
         image: '/assets/images/products/jewelry/jewelry5.png',
-         images: [
+        images: [
             '/assets/images/products/jewelry/jewelry5.png',
             '/assets/images/products/jewelry/jewelry-sub1-5.png',
         ],
@@ -878,7 +878,7 @@ export const jewelryProducts: Product[] = [
         id: 'j13',
         name: 'Vintage Elegance Pearl Choker',
         category: 'jewelry',
-        subcategory: 'Necklace',	
+        subcategory: 'Necklace',
         price: 72.00,
         rating: 4.5,
         image: '/assets/images/products/jewelry/jewelry13.png',
@@ -931,7 +931,7 @@ export const jewelryProducts: Product[] = [
         discount: 10,
         rating: 4.5,
         image: '/assets/images/products/jewelry/jewelry18.png',
-          images: [
+        images: [
             '/assets/images/products/jewelry/jewelry18.png',
             '/assets/images/products/jewelry/jewelry-sub1-18.png',
             '/assets/images/products/jewelry/jewelry-sub2-18.png',

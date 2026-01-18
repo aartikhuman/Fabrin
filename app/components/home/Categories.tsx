@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 
 export default function Categories() {
     return (
-        <section className="py-20 bg-white">
+        <section className="pb-20 bg-white">
             <div className="container mx-auto px-4">
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12 items-start">
 
@@ -20,6 +20,10 @@ export default function Categories() {
                                     src="/assets/images/categories/product-1.png"
                                     alt="Fashion Collection"
                                     className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                                    loading="lazy"
+                                    decoding="async"
+                                    width={400}
+                                    height={400}
                                 />
                             </div>
                             <h3 className="text-3xl font-bold font-big mb-6 tracking-tight">Fashion Collection</h3>
@@ -35,13 +39,17 @@ export default function Categories() {
                         whileInView={{ opacity: 1, scale: 1 }}
                         viewport={{ once: true }}
                         transition={{ duration: 1 }}
-                        className="pt-0"
+                        className="pt-0 hidden md:block"
                     >
                         <div className="aspect-[3/4.5] overflow-hidden shadow-sm">
                             <img
                                 src="/assets/images/categories/product-2.png"
                                 alt="Style Look"
                                 className="w-full h-full object-cover"
+                                loading="lazy"
+                                decoding="async"
+                                width={450}
+                                height={675}
                             />
                         </div>
                     </motion.div>
@@ -59,6 +67,10 @@ export default function Categories() {
                                     src="/assets/images/categories/product-3.png"
                                     alt="Jewelry Collection"
                                     className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                                    loading="lazy"
+                                    decoding="async"
+                                    width={400}
+                                    height={400}
                                 />
                             </div>
                             <h3 className="text-3xl font-bold font-big mb-2 tracking-tight">Jewelry Collection</h3>

@@ -3,7 +3,6 @@
 
 @theme {
   --font-big: "Big Shoulders";
-  --font-inter: "Inter";
   --breakpoint-3xl: 1920px;
 
 
@@ -19,9 +18,9 @@
   --color-shade-09: #1A1A1A;
   --color-shade-08: #484A49;
   --color-shade-07: #4D4D4D;
-  --color-shade-06: #818383;
-  --color-shade-05: #A3A5A4;
-  --color-shade-04: #999999;
+  --color-shade-06: #595959;
+  --color-shade-05: #757575;
+  --color-shade-04: #666666;
   --color-shade-03: #B3B3B3;
   --color-shade-02: #CCCCCC;
   --color-shade-01: #F4F7F6;
@@ -41,36 +40,7 @@
   font-style: normal;
 }
 
-@font-face {
-  font-family: 'Inter';
-  src: url('../assets/fonts/Inter_18pt-Regular.ttf');
-  font-weight: 400;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: 'Inter';
-  src: url('../assets/fonts/Inter_18pt-Medium.ttf');
-  font-weight: 500;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: 'Inter';
-  src: url('../assets/fonts/Inter_18pt-SemiBold.ttf');
-  font-weight: 600;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: 'Inter';
-  src: url('../assets/fonts/Inter_18pt-Bold.ttf');
-  font-weight: 700;
-  font-style: normal;
-}
-
 body {
-  font-family: var(--font-inter);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }

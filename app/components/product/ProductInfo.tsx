@@ -38,12 +38,12 @@ export default function ProductInfo({ product }: ProductInfoProps) {
         <div>
 
             <div className="flex flex-col h-full">
-                <span className="text-shade-06 text-base mb-3 capitalize">{product.category} Collection</span>
+                <span className="text-black-100 font-medium text-base mb-3 capitalize">{product.category} Collection</span>
                 <h1 className="text-5xl font-bold font-big text-black-100 mb-5">{product.name}</h1>
 
                 <div className="flex items-center justify-between mb-6 pb-6 border-b border-shade-10">
                     <div className="flex items-center gap-4">
-                        <span className="text-2xl font-medium font-inter text-black-100">
+                        <span className="text-2xl font-bold font-inter text-black-100">
                             ${product.price.toFixed(2)}
                         </span>
                         {product.originalPrice && (
@@ -70,38 +70,46 @@ export default function ProductInfo({ product }: ProductInfoProps) {
                 </div>
 
                 <div className="mb-6">
-                    <h3 className="text-lg font-bold font-big text-black-100 mb-2">Description:</h3>
-                    <p className="text-shade-06 leading-relaxed">
-                        {product.description}If it doesn't fit your expectations, you're covered — hassle-free return and support available. Easy to clean and maintain, ensuring it stays looking new even with regular use.
-                        <button className="text-black-100 font-semibold ml-1 hover:underline cursor-pointer">See More...</button>
+                    <h2 className="text-lg font-bold font-big text-black-100 mb-2">Description:</h2>
+                    <p className="text-black-100/80 leading-relaxed">
+                        {product.description} If it doesn't fit your expectations, you're covered — hassle-free return and support available. Easy to clean and maintain, ensuring it stays looking new even with regular use.
+                        <button className="text-brown font-semibold ml-1 hover:underline cursor-pointer" aria-label="Read full description">See More...</button>
                     </p>
                 </div>
                 <div className='flex items-center justify-between'>
                     {/* Color Selector */}
                     <div className="mb-6">
-                        <h3 className="text-lg font-bold font-big text-black-100 mb-3">Color</h3>
+                        <h2 className="text-lg font-bold font-big text-black-100 mb-3">Color</h2>
                         <div className="flex items-center gap-3">
                             {product.colors.map(color => (
                                 <button
                                     key={color}
                                     onClick={() => setSelectedColor(color)}
+                                    aria-label={`Select color ${color}`}
                                     className={`w-8 h-8 rounded-full border-2 transition-all cursor-pointer ${selectedColor === color
                                         ? 'border-brown ring-1 ring-brown ring-offset-2'
                                         : 'border-[#ececec] hover:scale-110'
                                         }`}
                                     style={{ backgroundColor: colorMap[color] || color }}
-                                    title={color}
                                 />
                             ))}
                         </div>
                     </div>
                     {/* Quantity */}
                     <div className="flex items-center bg-shade-01 rounded-lg px-2">
-                        <button onClick={decrement} className="w-10 h-10 flex items-center justify-center text-lg cursor-pointer hover:text-brown transition-colors">
+                        <button
+                            onClick={decrement}
+                            aria-label="Decrease quantity"
+                            className="w-10 h-10 flex items-center justify-center text-lg cursor-pointer hover:text-brown transition-colors"
+                        >
                             -
                         </button>
-                        <span className="w-8 text-center font-semibold">{quantity}</span>
-                        <button onClick={increment} className="w-10 h-10 flex items-center justify-center text-lg cursor-pointer hover:text-brown transition-colors">
+                        <span className="w-8 text-center font-bold" aria-label={`Current quantity is ${quantity}`}>{quantity}</span>
+                        <button
+                            onClick={increment}
+                            aria-label="Increase quantity"
+                            className="w-10 h-10 flex items-center justify-center text-lg cursor-pointer hover:text-brown transition-colors"
+                        >
                             +
                         </button>
                     </div>
@@ -111,13 +119,14 @@ export default function ProductInfo({ product }: ProductInfoProps) {
                 {product.sizes && (
                     <div className="mb-20">
                         <div className="flex justify-between items-center mb-3">
-                            <h3 className="text-lg font-bold font-big text-black-100">Size</h3>
+                            <h2 className="text-lg font-bold font-big text-black-100">Size</h2>
                         </div>
                         <div className="flex flex-wrap gap-3">
                             {product.sizes.map(size => (
                                 <button
                                     key={size}
                                     onClick={() => setSelectedSize(size)}
+                                    aria-label={`Select size ${size}`}
                                     className={`px-4 py-3 text-sm transition-colors cursor-pointer min-w-12 ${selectedSize === size
                                         ? 'bg-brown text-white font-medium'
                                         : 'bg-shade-01 text-shade-06 hover:bg-shade-02 hover:text-black-100'

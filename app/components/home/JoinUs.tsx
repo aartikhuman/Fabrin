@@ -15,17 +15,19 @@ export default function JoinUs() {
                     <h2 className="text-[40px] md:text-[64px] font-bold font-big mb-4">Join Us Today</h2>
                     <p className="text-shade-06 mb-10 font-inter">Sign up to our newsletter and be the first to know about new collections and exclusive offers.</p>
 
-                    <form className="flex flex-col md:flex-row gap-4 max-w-xl mx-auto">
+                    <form className="flex flex-col md:flex-row gap-4 max-w-xl mx-auto" aria-label="Newsletter signup">
                         <input
                             type="email"
                             placeholder="Your email address"
-                            className="flex-grow px-6 py-2 border border-shade-02 rounded-md focus:outline-none focus:border-brown"
+                            aria-label="Email address for newsletter"
+                            className="grow px-6 py-2 border border-shade-02 rounded-md focus:outline-none focus:border-brown"
                             required
                         />
                         <Button
                             type="submit"
                             variant="primary"
                             size="md"
+                            aria-label="Subscribe to newsletter"
                         >
                             Join
                         </Button>

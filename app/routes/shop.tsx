@@ -15,14 +15,10 @@ export default function Shop() {
     const [currentPage, setCurrentPage] = useState(1);
     const [searchQuery, setSearchQuery] = useState('');
 
-    // Memoize the shuffled products once
-    const shuffledProducts = useMemo(() => {
-        return [...allProducts].sort(() => Math.random() - 0.5);
-    }, []);
 
     // Filter products based on search
     const filteredProducts = useMemo(() => {
-        return shuffledProducts.filter(product => {
+        return allProducts.filter(product => {
             if (searchQuery) {
                 const query = searchQuery.toLowerCase();
                 return (
@@ -33,7 +29,7 @@ export default function Shop() {
             }
             return true;
         });
-    }, [searchQuery, shuffledProducts]);
+    }, [searchQuery]);
 
     // Paginate products
     const paginatedProducts = useMemo(() => {
@@ -48,19 +44,21 @@ export default function Shop() {
             {/* Hero Section */}
             <div className="bg-[url('/assets/images/image.png')] bg-cover bg-top border-b border-shade-10 py-20 mb-12 relative before:absolute before:inset-0 before:bg-black/20 overflow-hidden">
                 <motion.div
-                    initial="hidden"
+                    initial={false}
                     animate="visible"
                     variants={staggerContainer}
                     className="container mx-auto px-4 text-center z-10 relative"
                 >
                     <motion.h1
                         variants={fadeInUp}
+                        initial={false}
                         className="text-5xl md:text-7xl font-bold font-big text-white mb-6 tracking-tight"
                     >
                         Discover Everything
                     </motion.h1>
                     <motion.p
                         variants={fadeInUp}
+                        initial={false}
                         className="text-white/80 text-lg md:text-xl max-w-2xl mx-auto mb-10 font-inter"
                     >
                         Explore our curated collection of unique pieces, blended together for a creative shopping discovery.
@@ -90,7 +88,7 @@ export default function Shop() {
 
             <div className="container mx-auto px-4 pb-20">
                 <motion.div
-                    initial={{ opacity: 0 }}
+                    initial={false}
                     animate={{ opacity: 1 }}
                     transition={{ delay: 0.4, duration: 1 }}
                 >

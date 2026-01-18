@@ -45,6 +45,10 @@ export default function InstagramGallery() {
                             src={img}
                             alt={`Gallery ${index}`}
                             className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110"
+                            loading="lazy"
+                            decoding="async"
+                            width={300}
+                            height={300}
                         />
 
                         {/* Hover Overlay */}
@@ -56,15 +60,17 @@ export default function InstagramGallery() {
                             </h4>
 
                             {/* Creative Arrow Button */}
-                            <div className="mt-6 relative w-14 h-14 transition-all duration-700 transform translate-y-12 group-hover:translate-y-0 opacity-0 group-hover:opacity-100 delay-100 flex items-center justify-center">
+                            <button
+                                className="mt-6 relative w-14 h-14 transition-all duration-700 transform translate-y-12 group-hover:translate-y-0 opacity-0 group-hover:opacity-100 delay-100 flex items-center justify-center cursor-pointer"
+                                aria-label={`View Instagram post ${index + 1}`}
+                            >
                                 {/* Offset Outline Circle */}
                                 <div className="absolute inset-0 translate-x-4 rounded-full border-2 border-brown opacity-50" />
-
                                 {/* Solid background circle with arrow */}
                                 <div className="relative w-full h-full rounded-full bg-brown flex items-center justify-center text-white shadow-lg">
                                     <HiOutlineArrowNarrowRight size={28} />
                                 </div>
-                            </div>
+                            </button>
                         </div>
                     </motion.div>
                 ))}

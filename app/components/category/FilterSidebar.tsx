@@ -1,15 +1,17 @@
 import { useState } from 'react';
 import { Link, useLocation } from 'react-router';
-import { IoChevronDown, IoCheckmark, IoFilterOutline } from 'react-icons/io5';
+import { IoChevronDown, IoCheckmark, IoFilterOutline, IoCloseOutline } from 'react-icons/io5';
 import type { FilterState, DressStyle, Color, Size } from '../../types/product';
 
 interface FilterSidebarProps {
     filters: FilterState;
     onFilterChange: (filters: FilterState) => void;
     showDressStyle?: boolean;
+    onClose?: () => void;
+    isMobile?: boolean;
 }
 
-export default function FilterSidebar({ filters, onFilterChange, showDressStyle = true }: FilterSidebarProps) {
+export default function FilterSidebar({ filters, onFilterChange, showDressStyle = true, onClose, isMobile }: FilterSidebarProps) {
     const location = useLocation();
     const [openSections, setOpenSections] = useState({
         category: true,
@@ -37,28 +39,28 @@ export default function FilterSidebar({ filters, onFilterChange, showDressStyle 
 
     const handleCategoryToggle = (category: string) => {
         const newCategories = filters.categories.includes(category)
-            ? filters.categories.filter(c => c !== category)
+            ? filters.categories.filter((c: string) => c !== category)
             : [...filters.categories, category];
         onFilterChange({ ...filters, categories: newCategories });
     };
 
     const handleDressStyleToggle = (style: DressStyle) => {
         const newStyles = filters.dressStyles.includes(style)
-            ? filters.dressStyles.filter(s => s !== style)
+            ? filters.dressStyles.filter((s: string) => s !== style)
             : [...filters.dressStyles, style];
         onFilterChange({ ...filters, dressStyles: newStyles });
     };
 
     const handleColorToggle = (color: Color) => {
         const newColors = filters.colors.includes(color)
-            ? filters.colors.filter(c => c !== color)
+            ? filters.colors.filter((c: string) => c !== color)
             : [...filters.colors, color];
         onFilterChange({ ...filters, colors: newColors });
     };
 
     const handleSizeToggle = (size: Size) => {
         const newSizes = filters.sizes.includes(size)
-            ? filters.sizes.filter(s => s !== size)
+            ? filters.sizes.filter((s: string) => s !== size)
             : [...filters.sizes, size];
         onFilterChange({ ...filters, sizes: newSizes });
     };
@@ -97,15 +99,22 @@ export default function FilterSidebar({ filters, onFilterChange, showDressStyle 
                     <IoFilterOutline size={24} />
                     <h3 className="text-2xl font-bold font-big">Filters</h3>
                 </div>
-                {hasActiveFilters && (
-                    <button
-                        onClick={resetFilters}
-                        className="text-red-500 hover:text-red-600 transition-colors cursor-pointer"
-                        title="Reset filters"
-                    >
-                        Reset
-                    </button>
-                )}
+                <div className="flex items-center gap-4">
+                    {hasActiveFilters && (
+                        <button
+                            onClick={resetFilters}
+                            className="text-red-500 hover:text-red-200 transition-colors cursor-pointer text-sm font-medium"
+                            title="Reset filters"
+                        >
+                            Reset
+                        </button>
+                    )}
+                    {isMobile && (
+                        <button onClick={onClose} className="text-black-100 cursor-pointer">
+                            <IoCloseOutline size={24} />
+                        </button>
+                    )}
+                </div>
             </div>
 
             {/* Category Navigation */}

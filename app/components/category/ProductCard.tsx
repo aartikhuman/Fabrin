@@ -17,7 +17,7 @@ export default function ProductCard({ product }: ProductCardProps) {
 
     return (
         <Link to={`/product/${product.id}`} className="block group cursor-pointer">
-            <div className="h-[380px] relative overflow-hidden group-hover:shadow-sm transition-all duration-500">
+            <div className="aspect-3/4 relative overflow-hidden group-hover:shadow-sm transition-all duration-500">
                 {product.discount && (
                     <span className="absolute top-4 left-4 bg-brown text-white px-4 py-1 rounded-full text-base font-inter z-10 transition-transform duration-300 group-hover:scale-110">
                         {product.discount}%
@@ -27,6 +27,10 @@ export default function ProductCard({ product }: ProductCardProps) {
                     src={product.image}
                     alt={product.name}
                     className="object-cover h-full w-full group-hover:scale-110 transition-transform duration-700 ease-out"
+                    loading="lazy"
+                    decoding="async"
+                    width={380}
+                    height={380}
                 />
                 {/* Overlay on hover */}
                 <div className="absolute inset-0 bg-black opacity-0 group-hover:opacity-10 transition-opacity duration-500" />
@@ -34,21 +38,21 @@ export default function ProductCard({ product }: ProductCardProps) {
                 {/* Action buttons with staggered animation */}
                 <div className="absolute right-4 top-4 flex flex-col gap-2 opacity-0 translate-x-4 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-500 z-20">
                     <button
-                        title="Quick View"
+                        aria-label="Quick View"
                         onClick={(e) => { e.preventDefault(); e.stopPropagation(); navigate(`/product/${product.id}`); }}
                         className="w-12 h-12 rounded-full bg-brown text-white flex items-center justify-center cursor-pointer hover:bg-dark-brown hover:scale-110 transition-all duration-300 shadow-lg transform group-hover:animate-[slideIn_0.3s_ease-out]"
                     >
                         <IoEyeOutline size={22} />
                     </button>
                     <button
-                        title={isWishlisted ? "Remove from wishlist" : "Add to wishlist"}
+                        aria-label={isWishlisted ? "Remove from wishlist" : "Add to wishlist"}
                         onClick={(e) => { e.preventDefault(); e.stopPropagation(); toggleWishlist(product); }}
                         className={`w-12 h-12 rounded-full flex items-center justify-center cursor-pointer transition-all duration-300 shadow-lg transform group-hover:animate-[slideIn_0.4s_ease-out] ${isWishlisted ? 'bg-white text-red-500 scale-110' : 'bg-brown text-white hover:bg-dark-brown hover:scale-110'}`}
                     >
                         {isWishlisted ? <IoHeart size={22} /> : <IoHeartOutline size={22} />}
                     </button>
                     <button
-                        title="Add to Cart"
+                        aria-label="Add to Cart"
                         onClick={(e) => { e.preventDefault(); e.stopPropagation(); addToCart(product, 1, product.colors[0], product.sizes?.[0]); }}
                         className="w-12 h-12 rounded-full bg-brown text-white flex items-center justify-center cursor-pointer hover:bg-dark-brown hover:scale-110 transition-all duration-300 shadow-lg transform group-hover:animate-[slideIn_0.5s_ease-out]"
                     >
@@ -76,6 +80,6 @@ export default function ProductCard({ product }: ProductCardProps) {
                     <span className='text-shade-05 line-through ml-2'>${product.originalPrice.toFixed(2)}</span>
                 )}
             </p>
-        </Link>
+        </Link >
     );
 }

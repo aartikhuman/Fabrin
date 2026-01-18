@@ -53,7 +53,7 @@ export default function CheckoutLayout() {
 
                                     return (
                                         <div key={step.id} className="flex items-center w-full last:w-auto">
-                                            <div className="flex items-center relative z-10 gap-3">
+                                            <div className="flex items-center relative z-10 gap-2 md:gap-3">
                                                 <motion.div
                                                     initial={false}
                                                     animate={{
@@ -61,18 +61,18 @@ export default function CheckoutLayout() {
                                                         borderColor: (isActive || isCompleted) ? "#A86C51" : "#E5E7EB",
                                                         color: (isActive || isCompleted) ? "#FFFFFF" : "#9CA3AF"
                                                     }}
-                                                    className={`w-12 h-12 rounded-full flex items-center justify-center text-2xl border-2 transition-colors duration-300`}
+                                                    className={`w-10 h-10 md:w-12 md:h-12 rounded-full flex items-center justify-center text-xl md:text-2xl border-2 transition-colors duration-300`}
                                                 >
                                                     <Icon />
                                                 </motion.div>
-                                                <span className={`text-lg font-semibold font-inter ${(isActive || isCompleted) ? 'text-black-100' : 'text-shade-05'}`}>
+                                                <span className={`text-[12px] sm:text-base md:text-lg font-semibold font-inter ${(isActive || isCompleted) ? 'text-black-100' : 'text-shade-05'} hidden xs:block`}>
                                                     {step.name}
                                                 </span>
                                             </div>
 
                                             {/* Connector Line */}
                                             {index < steps.length - 1 && (
-                                                <div className="flex-1 mx-4 h-px bg-shade-10 relative">
+                                                <div className="flex-1 mx-2 md:mx-4 h-px bg-shade-10 relative">
                                                     <motion.div
                                                         initial={{ scaleX: 0 }}
                                                         animate={{ scaleX: isCompleted ? 1 : 0 }}

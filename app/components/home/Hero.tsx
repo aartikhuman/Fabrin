@@ -1,11 +1,7 @@
+import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Autoplay, Pagination, EffectFade } from 'swiper/modules';
-
-// Import Swiper styles
-import 'swiper/css';
-import 'swiper/css/pagination';
-import 'swiper/css/effect-fade';
 
 const sliderData = [
     {
@@ -26,6 +22,12 @@ const sliderData = [
 ];
 
 export default function Hero() {
+    const [mounted, setMounted] = useState(false);
+
+    useEffect(() => {
+        setMounted(true);
+    }, []);
+
     const containerVariants = {
         hidden: { opacity: 0 },
         visible: {
@@ -37,14 +39,6 @@ export default function Hero() {
         }
     };
 
-    const itemVariants = {
-        hidden: { opacity: 0, y: 40 },
-        visible: {
-            opacity: 1,
-            y: 0,
-            transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] as any }
-        }
-    };
 
     return (
         <section className="bg-white overflow-hidden pt-10 pb-0 relative">
@@ -75,71 +69,71 @@ export default function Hero() {
 
             <div className='container mx-auto px-4'>
                 <motion.div
-                    initial="hidden"
+                    initial={false}
                     animate="visible"
                     variants={containerVariants}
                     className="flex flex-col"
                 >
-                    <motion.h1
-                        variants={itemVariants}
-                        className="text-[48px] md:text-[5.3vw] font-bold font-big flex flex-wrap items-center gap-x-4 md:gap-x-8 leading-[1.1] md:leading-[124px] tracking-tight pb-2"
-                    >
-                        <span>Timeless Fashion for Refined</span>
+                    <h1 className="text-[5.8vw] sm:text-[40px] md:text-[49px] lg:text-[65px] xl:text-[80px] 2xl:text-[102px] font-bold font-big flex flex-wrap items-center gap-x-2 md:gap-x-8 leading-[1.2] md:leading-[1.1] tracking-tight pb-2">
+                        <span>Timeless Fashion for Refined LUX</span>
                         <motion.img
-                            initial={{ scale: 0, rotate: -15 }}
+                            initial={false}
                             animate={{ scale: 1, rotate: 0 }}
                             transition={{ delay: 0.8, type: "spring", stiffness: 100 }}
                             src='/assets/images/home/badge1.png'
-                            alt='badge'
-                            className="h-[40px] md:h-[80px] object-contain"
+                            alt='Fabrin quality badge'
+                            className="object-contain w-[60px] sm:w-[120px] lg:w-[200px] xl:w-[266px] h-auto"
                         />
-                    </motion.h1>
-                    <motion.h1
-                        variants={itemVariants}
-                        className="text-[48px] md:text-[5.3vw] font-bold font-big text-end leading-[1.1] md:leading-[124px] tracking-tight"
-                    >
+                    </h1>
+                    <h2 className="text-[5.8vw] sm:text-[40px] md:text-[49px] lg:text-[65px] xl:text-[80px] 2xl:text-[102px] font-bold font-big text-end leading-[1.2] md:leading-[1.1] tracking-tight">
                         Curated Lifestyle
-                    </motion.h1>
+                    </h2>
                 </motion.div>
             </div>
 
             <motion.div
-                initial={{ opacity: 0 }}
+                initial={false}
                 animate={{ opacity: 1 }}
                 transition={{ duration: 1.2 }}
-                className="w-full mt-4 md:mt-[-130px] relative z-0"
+                className="w-full mt-[-20px] sm:mt-[-47px] lg:mt-[-72px] xl:mt-[-100px] 2xl:mt-[-120px] relative z-0"
             >
-                <Swiper
-                    modules={[Autoplay, Pagination, EffectFade]}
-                    effect="fade"
-                    speed={1500}
-                    autoplay={{
-                        delay: 5000,
-                        disableOnInteraction: false,
-                    }}
-                    pagination={{
-                        clickable: true,
-                    }}
-                    loop={true}
-                    className="hero-slider w-full"
-                >
-                    {sliderData.map((slide) => (
-                        <SwiperSlide key={slide.id}>
-                            <div className="relative overflow-hidden w-full h-[60vh] md:h-[80vh] lg:h-auto">
-                                <motion.img
-                                    initial={{ scale: 1.1 }}
-                                    animate={{ scale: 1 }}
-                                    transition={{ duration: 6, ease: "linear" }}
-                                    src={slide.image}
-                                    alt={slide.alt}
-                                    className='w-full h-full object-cover'
-                                />
-                                {/* Optional Overlay for better text readability if needed later */}
-                                <div className="absolute inset-0 pointer-events-none"></div>
-                            </div>
-                        </SwiperSlide>
-                    ))}
-                </Swiper>
+                {mounted && (
+                    <Swiper
+                        modules={[Autoplay, Pagination, EffectFade]}
+                        effect="fade"
+                        speed={1500}
+                        autoplay={{
+                            delay: 5000,
+                            disableOnInteraction: false,
+                        }}
+                        pagination={{
+                            clickable: true,
+                        }}
+                        loop={true}
+                        className="hero-slider w-full"
+                    >
+                        {sliderData.map((slide, index) => (
+                            <SwiperSlide key={slide.id}>
+                                <div className="relative overflow-hidden w-full">
+                                    <motion.img
+                                        initial={false}
+                                        animate={{ scale: 1 }}
+                                        transition={{ duration: 6, ease: "linear" }}
+                                        src={slide.image}
+                                        alt={slide.alt}
+                                        className='w-full h-full object-cover'
+                                        width={1920}
+                                        height={1080}
+                                        loading={index === 0 ? "eager" : "lazy"}
+                                        {...(index === 0 ? { fetchPriority: "high" } : {})}
+                                    />
+                                    {/* Optional Overlay for better text readability if needed later */}
+                                    <div className="absolute inset-0 pointer-events-none"></div>
+                                </div>
+                            </SwiperSlide>
+                        ))}
+                    </Swiper>
+                )}
             </motion.div>
         </section>
     );

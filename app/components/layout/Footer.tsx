@@ -18,7 +18,7 @@ export default function Footer() {
                 >
                     {/* Brand Logo */}
                     <motion.div variants={fadeInUp}>
-                        <Link to="/" className="text-5xl font-big font-bold tracking-tight">
+                        <Link to="/" className="text-4xl font-big font-bold">
                             Fabrin
                         </Link>
                     </motion.div>
@@ -33,13 +33,13 @@ export default function Footer() {
 
                     {/* Social Icons */}
                     <motion.div variants={fadeInUp} className="flex items-center gap-6 text-2xl">
-                        <a href="https://google.com" target="_blank" rel="noopener noreferrer" className="hover:opacity-75 transition-opacity">
+                        <a href="https://google.com" target="_blank" rel="noopener noreferrer" className="hover:opacity-75 transition-opacity" aria-label="Follow us on Google">
                             <FaGoogle />
                         </a>
-                        <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" className="hover:opacity-75 transition-opacity">
+                        <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" className="hover:opacity-75 transition-opacity" aria-label="Follow us on Facebook">
                             <FaFacebook />
                         </a>
-                        <a href="https://youtube.com" target="_blank" rel="noopener noreferrer" className="hover:opacity-75 transition-opacity">
+                        <a href="https://youtube.com" target="_blank" rel="noopener noreferrer" className="hover:opacity-75 transition-opacity" aria-label="Subscribe to our Youtube channel">
                             <FaYoutube />
                         </a>
                     </motion.div>

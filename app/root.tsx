@@ -1,3 +1,9 @@
+import "swiper/css";
+import "swiper/css/pagination";
+import "swiper/css/navigation";
+import 'swiper/css/effect-fade';
+import 'react-toastify/dist/ReactToastify.css';
+import "./app.css";
 import {
   isRouteErrorResponse,
   Links,
@@ -19,11 +25,6 @@ import WelcomePopup from "./components/common/WelcomePopup";
 import Preloader from "./components/ui/Preloader";
 import WishlistDrawer from "./components/wishlist/WishlistDrawer";
 import { ToastContainer } from 'react-toastify';
-import toastStyles from 'react-toastify/dist/ReactToastify.css?url';
-import "swiper/css";
-import "swiper/css/pagination";
-import "swiper/css/navigation"
-import "./app.css";
 
 export const links: Route.LinksFunction = () => [
   { rel: "preconnect", href: "https://fonts.googleapis.com" },
@@ -33,10 +34,11 @@ export const links: Route.LinksFunction = () => [
     crossOrigin: "anonymous",
   },
   {
-    rel: "stylesheet",
-    href: "https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap",
+    rel: "preload",
+    as: "style",
+    href: "https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Outfit:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap",
   },
-  { rel: "stylesheet", href: toastStyles },
+  { rel: "icon", type: "image/svg+xml", href: "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>F</text></svg>" },
 ];
 
 export function Layout({ children }: { children: React.ReactNode }) {
@@ -47,6 +49,19 @@ export function Layout({ children }: { children: React.ReactNode }) {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <Meta />
         <Links />
+        {/* Non-blocking Font Loading */}
+        <link
+          rel="stylesheet"
+          href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Outfit:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap"
+          media="print"
+          onLoad={(e) => { (e.target as HTMLLinkElement).media = "all"; }}
+        />
+        <noscript>
+          <link
+            rel="stylesheet"
+            href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Outfit:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap"
+          />
+        </noscript>
       </head>
       <body>
         {children}
@@ -63,7 +78,7 @@ export default function App() {
   useEffect(() => {
     const timer = setTimeout(() => {
       setIsLoading(false);
-    }, 3000);
+    }, 800);
     return () => clearTimeout(timer);
   }, []);
 

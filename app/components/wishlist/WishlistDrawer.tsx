@@ -53,9 +53,9 @@ export default function WishlistDrawer() {
                                             <div className="flex flex-col h-full">
                                                 {/* Header */}
                                                 <div className="flex items-center justify-between border-b border-shade-10 pb-6 mb-2">
-                                                    <h2 className="text-2xl font-big font-bold text-black-100">
+                                                    <Dialog.Title as="h2" className="text-2xl font-big font-bold text-black-100">
                                                         {wishlistItems.length > 0 ? `Your Wishlist (${wishlistItems.length} Items)` : 'Your Wishlist Is Empty'}
-                                                    </h2>
+                                                    </Dialog.Title>
                                                     <button
                                                         type="button"
                                                         className="text-gray-400 hover:text-gray-500 -m-2 p-2 outline-none"

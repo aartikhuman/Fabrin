@@ -25,12 +25,17 @@ export default function ProductGallery({ images, product }: ProductGalleryProps)
             <div className="relative bg-shade-01 overflow-hidden group">
                 <img
                     src={selectedImage}
-                    alt="Product"
-                    className="w-full h-[700px] object-cover object-center transition-transform duration-500 group-hover:scale-105"
+                    alt={product.name}
+                    width={712}
+                    height={936}
+                    fetchPriority="high"
+                    loading="eager"
+                    decoding="sync"
+                    className="w-full aspect-4/5 md:h-[700px] object-cover object-center transition-transform duration-500 group-hover:scale-105"
                 />
                 <button
                     onClick={() => toggleWishlist(product)}
-                    title={isWishlisted ? "Remove from wishlist" : "Add to wishlist"}
+                    aria-label={isWishlisted ? "Remove from wishlist" : "Add to wishlist"}
                     className={`absolute top-4 right-4 p-2 rounded-full transition-all shadow-sm cursor-pointer ${isWishlisted ? 'bg-white text-red-500 scale-110' : 'bg-white/80 hover:bg-white text-black-100'}`}
                 >
                     {isWishlisted ? <IoHeart size={24} /> : <IoHeartOutline size={24} />}
@@ -43,10 +48,19 @@ export default function ProductGallery({ images, product }: ProductGalleryProps)
                     <button
                         key={index}
                         onClick={() => setSelectedImage(img)}
-                        className={`overflow-hidden -pointer transition-all aspect-square ${selectedImage === img ? 'opacity-100' : 'opacity-70 hover:opacity-100'
+                        aria-label={`View thumbnail ${index + 1}`}
+                        className={`overflow-hidden transition-all aspect-square border-2 ${selectedImage === img ? 'border-brown opacity-100' : 'border-transparent opacity-70 hover:opacity-100'
                             }`}
                     >
-                        <img src={img} alt={`Thumbnail ${index + 1}`} className="w-full h-full object-cover aspect-square" />
+                        <img
+                            src={img}
+                            alt={`${product.name} thumbnail ${index + 1}`}
+                            width={155}
+                            height={130}
+                            loading="lazy"
+                            decoding="async"
+                            className="w-full h-full object-cover aspect-square"
+                        />
                     </button>
                 ))}
             </div>

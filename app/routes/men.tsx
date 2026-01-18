@@ -5,8 +5,9 @@ import FilterSidebar from '../components/category/FilterSidebar';
 import ProductGrid from '../components/category/ProductGrid';
 import Pagination from '../components/category/Pagination';
 import { menProducts } from '../data/products';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import { fadeInUp, staggerContainer, fadeInLeft } from '../utils/animations';
+import { IoFilterOutline } from 'react-icons/io5';
 
 export function meta({ }: Route.MetaArgs) {
     return [
@@ -26,6 +27,7 @@ export default function Men() {
         colors: [],
         sizes: []
     });
+    const [isFilterOpen, setIsFilterOpen] = useState(false);
 
     // Get unique subcategories
     const subcategories = useMemo(() => {
@@ -82,12 +84,12 @@ export default function Men() {
         <Layout>
             <div className="container mx-auto px-4 py-12 overflow-hidden relative">
                 <div className="grid grid-cols-1 lg:grid-cols-4 gap-16">
-                    {/* Filter Sidebar */}
+                    {/* Desktop Filter Sidebar */}
                     <motion.div
                         initial="hidden"
                         animate="visible"
                         variants={staggerContainer}
-                        className="lg:col-span-1"
+                        className="hidden lg:block lg:col-span-1"
                     >
                         <motion.div variants={fadeInLeft}>
                             <FilterSidebar
@@ -97,6 +99,36 @@ export default function Men() {
                             />
                         </motion.div>
                     </motion.div>
+
+                    {/* Mobile Filter Drawer Overlay */}
+                    <AnimatePresence>
+                        {isFilterOpen && (
+                            <>
+                                <motion.div
+                                    initial={{ opacity: 0 }}
+                                    animate={{ opacity: 1 }}
+                                    exit={{ opacity: 0 }}
+                                    onClick={() => setIsFilterOpen(false)}
+                                    className="fixed inset-0 bg-black/50 z-100 lg:hidden"
+                                />
+                                <motion.div
+                                    initial={{ x: '-100%' }}
+                                    animate={{ x: 0 }}
+                                    exit={{ x: '-100%' }}
+                                    transition={{ type: 'spring', damping: 25, stiffness: 200 }}
+                                    className="fixed top-0 left-0 bottom-0 w-[300px] h-full bg-white z-101 lg:hidden overflow-y-auto p-6 shadow-2xl"
+                                >
+                                    <FilterSidebar
+                                        filters={filters}
+                                        onFilterChange={handleFilterChange}
+                                        showDressStyle={true}
+                                        onClose={() => setIsFilterOpen(false)}
+                                        isMobile={true}
+                                    />
+                                </motion.div>
+                            </>
+                        )}
+                    </AnimatePresence>
                     {/* Main Content */}
                     <motion.div
                         initial="hidden"
@@ -108,8 +140,17 @@ export default function Men() {
                             variants={fadeInUp}
                             className="flex items-center justify-between mb-6"
                         >
-                            <h1 className="text-4xl font-bold font-big text-black-100">Men</h1>
-                            <p className="text-shade-06">
+                            <div className="flex items-center gap-4">
+                                <h1 className="text-4xl font-bold font-big text-black-100">Men</h1>
+                                <button
+                                    onClick={() => setIsFilterOpen(true)}
+                                    className="lg:hidden flex items-center gap-2 px-4 py-2 bg-shade-01 text-black-100 font-medium rounded-md hover:bg-shade-10 transition-colors"
+                                >
+                                    <IoFilterOutline size={18} />
+                                    Filters
+                                </button>
+                            </div>
+                            <p className="text-shade-06 hidden sm:block">
                                 Showing {paginatedProducts.length} of {filteredProducts.length} products
                             </p>
                         </motion.div>

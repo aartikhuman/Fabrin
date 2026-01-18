@@ -5,7 +5,7 @@ import { motion } from 'framer-motion';
 
 export default function BestSeller() {
     // Mixed products: Jewelry, Men's T-shirt, Women's Top, Women's Top
-    const bestSellerIds = ['j1', 'm9', 'w4', 'w17'];
+    const bestSellerIds = ['j9', 'm14', 'w2', 'j4'];
     const bestSellers = bestSellerIds
         .map(id => allProducts.find(p => p.id === id))
         .filter((p): p is typeof allProducts[0] => !!p);

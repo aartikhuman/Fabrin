@@ -14,6 +14,10 @@ export default function ElevateBanner() {
                     src="/assets/images/shop.png"
                     alt="Elevate"
                     className="w-full h-full object-cover bg-fixed"
+                    loading="lazy"
+                    decoding="async"
+                    width={1920}
+                    height={800}
                 />
                 <div className="absolute inset-0 bg-black/20"></div>
             </motion.div>
