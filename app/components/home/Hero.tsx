@@ -41,28 +41,11 @@ export default function Hero() {
 
 
     return (
-        <section className="bg-white overflow-hidden pt-10 pb-0 relative">
+        <section className="bg-white overflow-hidden pt-5 md:pt-10 pb-0 relative">
             <style>
                 {`
                 .hero-slider .swiper-pagination {
-                    bottom: 40px !important;
-                    display: flex;
-                    justify-content: center;
-                    gap: 12px;
-                    z-index: 20;
-                }
-                .hero-slider .swiper-pagination-bullet {
-                    width: 40px;
-                    height: 2px;
-                    background: #000;
-                    border-radius: 0;
-                    opacity: 0.2;
-                    transition: all 0.4s ease;
-                    margin: 0 !important;
-                }
-                .hero-slider .swiper-pagination-bullet-active {
-                    opacity: 1;
-                    width: 60px;
+                    display: none;
                 }
                 `}
             </style>

@@ -11,7 +11,7 @@ export default function StyleDescription() {
     };
 
     return (
-        <section className="py-20 lg:py-32 bg-white">
+        <section className="py-10 sm:py-20 lg:py-32 bg-white">
             <div className="container mx-auto px-4 text-center">
                 <motion.div
                     initial="hidden"
@@ -20,13 +20,13 @@ export default function StyleDescription() {
                     variants={textVariants}
                     className=""
                 >
-                    <h2 className="text-[50px] xl:text-[64px] font-bold font-big text-black-100">
+                    <h2 className="text-[25px] sm:text-[31px] md:text-[38px] lg:text-[50px] xl:text-[64px] font-bold font-big text-black-100">
                         Simple, quality fashion
-                        <img src="/assets/images/categories/badge2.png" alt="Badge 2" className="inline-block mx-2 md:mx-4 translate-y-[-2px] md:translate-y-[-4px] lg:w-[130px] w-[80px]" />
+                        <img src="/assets/images/categories/badge2.png" alt="Badge 2" className="inline-block mx-2 md:mx-4 translate-y-[-2px] md:translate-y-[-4px] lg:w-[130px] sm:w-[80px] w-[60px]" />
                         designed to <br /> looking
-                        <img src="/assets/images/categories/badge3.png" alt="Badge 3" className="inline-block mx-2 md:mx-4 translate-y-[-2px] md:translate-y-[-4px] lg:w-[130px] w-[80px]" />
+                        <img src="/assets/images/categories/badge3.png" alt="Badge 3" className="inline-block mx-2 md:mx-4 translate-y-[-2px] md:translate-y-[-4px] lg:w-[130px] sm:w-[80px] w-[60px]" />
                         great and keep things effortless <br /> for everyone everywhere
-                        <img src="/assets/images/categories/badge4.png" alt="Badge 4" className="inline-block mx-2 md:mx-4 translate-y-[-2px] md:translate-y-[-4px] lg:w-[130px] w-[80px]" />
+                        <img src="/assets/images/categories/badge4.png" alt="Badge 4" className="inline-block mx-2 md:mx-4 translate-y-[-2px] md:translate-y-[-4px] lg:w-[130px] sm:w-[80px] w-[60px]" />
                         wherever you go.
                     </h2>
                 </motion.div>
